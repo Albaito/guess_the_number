@@ -29,20 +29,29 @@ def check_guess(guess, secret):
     if guess > secret:
         return too_high
 
+def counter(count):     # counter function
+    count += 1
+    return count
+
 
 def main():
 
     (low, high) = configure_range()
     secret = generate_secret(low, high)
+    count = 0
 
     while True:
         guess = get_guess()
         result = check_guess(guess, secret)
+        count = counter(count)
         print(result)
 
         if result == correct:
             break
-
+    if count ==1:
+        print("you got it on your first guess!")
+    else:
+        print(f'You are correct. You got it after {count} guesses.')
     print('Thanks for playing the game!')
 
 
